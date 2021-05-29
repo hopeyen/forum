@@ -2,6 +2,19 @@
     %h2= @post.title
     %p= @post.content
 
-= link_to "Edit", edit_post_path(@post)
-= link_to "Delete", post_path(@post), method: :delete, data: { confirm: 'Are you sure?'}
-= link_to "Home", root_path
+    #comments 
+        %h3
+            = @post.comments.count
+            Comments
+        = render @post.comments
+
+        %h3 Reply to post
+        = render "comments/form"
+
+%br/
+%hr/
+%br/
+
+= link_to "Edit", edit_post_path(@post), class: "button"
+= link_to "Delete", post_path(@post), method: :delete, data: { confirm: 'Are you sure?'}, class: "button"
+= link_to "Home", root_path, class: "button"
